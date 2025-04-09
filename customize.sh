@@ -42,6 +42,9 @@ unzip -j -d $TMPDIR $ZIPFILE dtbo.img
 
 ui_print "- Updating dtbo${CUR_SLOT}"
 CUR_SLOT="$(getprop ro.boot.slot_suffix)"
-dd if=${TMPDIR}/dtbo.img of=/dev/block/by-name/dtbo${CUR_SLOT} bs=17M|tee /proc/self/fd/2
+dd if=${TMPDIR}/dtbo.img of=/dev/block/by-name/dtbo${CUR_SLOT} bs=17M
+
+ui_print "- Cleanuping temporary file ..."
+rm -vf ${TMPDIR}/dtbo.img
 
 set_perm_recursive "$MODPATH" 0 0 0755 0644
