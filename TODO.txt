@@ -1,0 +1,2 @@
+add dtbo.img
+add slot fetcher for a A/B device. Used to get current boot slot for provider of implement dtbo updater.
