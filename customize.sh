@@ -1,4 +1,4 @@
-# Extract from V14.0.22.12.8.DEV
+# Extract from V14.0.5.0.TKHCNXM
 REPLACE="
 /system/vendor/lib/hw/displayfeature.default.so
 /system/vendor/lib64/hw/displayfeature.default.so
@@ -36,5 +36,9 @@ for FILE in $(ls $MODPATH/system/product/etc/device_features/*); do
   sed -i 's/\"support_dc_backlight\">false<\/bool>/\"support_dc_backlight\">true<\/bool>/g' $FILE
   sed -i 's/\"support_secret_dc_backlight\">true<\/bool>/\"support_secret_dc_backlight\">false<\/bool>/g' $FILE
 done
+
+CUR_SLOT="$(getprop ro.boot.slot_suffix)"
+ui_print "- Updating dtbo${CUR_SLOT}"
+dd if=${TMPDIR}/dtbo.img of=/dev/block/by-name/dtbo${CUR_SLOT} bs=17M
 
 set_perm_recursive "$MODPATH" 0 0 0755 0644
