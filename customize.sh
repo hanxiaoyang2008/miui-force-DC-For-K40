@@ -37,8 +37,11 @@ for FILE in $(ls $MODPATH/system/product/etc/device_features/*); do
   sed -i 's/\"support_secret_dc_backlight\">true<\/bool>/\"support_secret_dc_backlight\">false<\/bool>/g' $FILE
 done
 
-CUR_SLOT="$(getprop ro.boot.slot_suffix)"
+ui_print "Extracting dtbo.img from module ..."
+unzip -j -d $TMPDIR $ZIPFILE dtbo.img
+
 ui_print "- Updating dtbo${CUR_SLOT}"
-dd if=${TMPDIR}/dtbo.img of=/dev/block/by-name/dtbo${CUR_SLOT} bs=17M
+CUR_SLOT="$(getprop ro.boot.slot_suffix)"
+dd if=${TMPDIR}/dtbo.img of=/dev/block/by-name/dtbo${CUR_SLOT} bs=17M|tee /proc/self/fd/2
 
 set_perm_recursive "$MODPATH" 0 0 0755 0644
