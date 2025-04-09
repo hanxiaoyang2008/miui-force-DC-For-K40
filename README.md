@@ -8,4 +8,5 @@
 
 ## 特别感谢这些人帮助
 **[酷安@閃電Flashh](https://www.coolapk.com/feed/57385566?shareKey=YWFlNDYwYTY5NTY0NjdmNjk2MGM~&shareUid=37349613&shareFrom=com.coolapk.market_15.2.2)**
+
 **[Github @varieget](https://github.com/varieget/miui-force-DC)**
